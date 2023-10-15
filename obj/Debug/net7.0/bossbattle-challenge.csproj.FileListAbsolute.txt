@@ -1,0 +1,15 @@
+C:\Users\Talisman\Desktop\bossbattle-challenge\bin\Debug\net7.0\bossbattle-challenge.exe
+C:\Users\Talisman\Desktop\bossbattle-challenge\bin\Debug\net7.0\bossbattle-challenge.deps.json
+C:\Users\Talisman\Desktop\bossbattle-challenge\bin\Debug\net7.0\bossbattle-challenge.runtimeconfig.json
+C:\Users\Talisman\Desktop\bossbattle-challenge\bin\Debug\net7.0\bossbattle-challenge.dll
+C:\Users\Talisman\Desktop\bossbattle-challenge\bin\Debug\net7.0\bossbattle-challenge.pdb
+C:\Users\Talisman\Desktop\bossbattle-challenge\obj\Debug\net7.0\bossbattle-challenge.csproj.AssemblyReference.cache
+C:\Users\Talisman\Desktop\bossbattle-challenge\obj\Debug\net7.0\bossbattle-challenge.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Talisman\Desktop\bossbattle-challenge\obj\Debug\net7.0\bossbattle-challenge.AssemblyInfoInputs.cache
+C:\Users\Talisman\Desktop\bossbattle-challenge\obj\Debug\net7.0\bossbattle-challenge.AssemblyInfo.cs
+C:\Users\Talisman\Desktop\bossbattle-challenge\obj\Debug\net7.0\bossbattle-challenge.csproj.CoreCompileInputs.cache
+C:\Users\Talisman\Desktop\bossbattle-challenge\obj\Debug\net7.0\bossbattle-challenge.dll
+C:\Users\Talisman\Desktop\bossbattle-challenge\obj\Debug\net7.0\refint\bossbattle-challenge.dll
+C:\Users\Talisman\Desktop\bossbattle-challenge\obj\Debug\net7.0\bossbattle-challenge.pdb
+C:\Users\Talisman\Desktop\bossbattle-challenge\obj\Debug\net7.0\bossbattle-challenge.genruntimeconfig.cache
+C:\Users\Talisman\Desktop\bossbattle-challenge\obj\Debug\net7.0\ref\bossbattle-challenge.dll
