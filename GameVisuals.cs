@@ -3,141 +3,211 @@ using System.Threading;
 
 namespace BossRushGame
 {
-    class GameFunctions
+    class GameVisuals
     {
-        #region Boss constructor
+        #region Title screen
         /// <summary>
-        /// Takes an int value to determine which Boss object will be returned.
+        /// Show the game title to the player.
+        /// </summary>
+        internal static void Introduction()
+        {
+            Console.WriteLine(@"
+               ###   #                 ###           #                            
+                #    #                 #  #         # #                           
+                #    ###    ##         #  #   ##    #     ##   ###    ###    ##   
+                #    #  #  # ##        #  #  # ##  ###   # ##  #  #  ##     # ##  
+                #    #  #  ##          #  #  ##     #    ##    #  #    ##   ##    
+                #    #  #   ##         ###    ##    #     ##   #  #  ###     ##   
+                                                                   
+                                                              #   
+                                                             # #  
+                                                       ##    #    
+                                                      #  #  ###   
+                                                      #  #   #    
+                                                       ##    #    
+                                                                  
+                                                       ##                            ##                 
+                                                      #  #                            #                 
+                                                      #      ##   ###    ###    ##    #     ###   ###   
+                                                      #     #  #  #  #  ##     #  #   #    #  #  ##     
+                                                      #  #  #  #  #  #    ##   #  #   #    # ##    ##   
+                                                       ##    ##   #  #  ###     ##   ###    # #  ###    
+                                                                                                       
+            ");
+            Thread.Sleep(800);
+            Console.WriteLine("                                                       by Digital RameN\n");
+            Thread.Sleep(1000);
+            Console.WriteLine("                                     Press ENTER");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        #endregion
+
+        #region Game instructions
+        /// <summary>
+        /// It's only purpose is to show the basic instructions for the game to the player.
+        /// </summary>
+        internal static void GameInstructions()
+        {
+            Console.WriteLine("Welcome to the game: \"The Defense of Consolas\"\n\n");
+            Thread.Sleep(800);
+            Console.WriteLine("This game is a programming challenge from the book: C# Player's Guide by RB Withaker\n");
+            Console.WriteLine("In the challenge we are tasked with creating a game where the player takes the role of the defender of the city");
+            Console.WriteLine("from the enemy airship \"The Manticore\" which will attack the player each turn, the player must try to guess the position");
+            Console.WriteLine("of the enemy which changes each new turn\n");
+            Console.WriteLine("- If the player correctly guess the enemy position, then the airship will take damage else the city takes damage.");
+            Console.WriteLine("\n- The player has to defeat 3 bosses, each boss more powerful than the previous one.");
+            Console.WriteLine("\n- For every boss defeated the player receives a buff to its HP and Power.");
+            Console.WriteLine("\n- On every turn the player has 3 chances to guess the current position of the enemy before it changes to a new position.\n");
+            Thread.Sleep(1500);
+            Console.WriteLine("Press ENTER to start game");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        #endregion
+
+        #region Player and Boss status screen
+        /// <summary>
+        /// Displays current stats for player and boss, and which boss if currently fighting.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="currentBoss"></param>
+        /// <param name="bossCount"></param>
+        internal static void DisplayGameStatus(City player, Boss currentBoss, int bossCount)
+        {
+            Console.Clear();
+            Console.WriteLine($"Boss: {bossCount + 1} / 3            [{currentBoss.Name}]                   ");
+            Console.WriteLine("==========================================================");
+            Console.WriteLine($"PlayerHP: {player.HP} Power: {player.FirePower}        ||       BossHP: {currentBoss.HP} Power: {currentBoss.FirePower}");
+            Console.WriteLine("==========================================================\n");
+            Map();
+        }
+        #endregion
+
+        #region Map
+        /// <summary>
+        /// It's only purpose is to display a map as a visual reference for the player. 
+        /// </summary>
+        internal static void Map()
+        {
+            Console.WriteLine(@"
+                                
+                            ┌──────────────────────────────────────────────────────────────────────────────────────────────────────┐
+                            │                                                                                                      │
+                            │  ┌────────────────────────────────────────────────────────────────────────────────────────────────┐  │
+                            │  │                                                                                                │  │
+                            │  │                                          Map                                                   │  │
+                            │  │                                                                                                │  │
+                            │  │                                                                                                │  │
+                            │  │                                                                                                │  │
+                            │  │                                                                                                │  │
+                            │  │                                                                                                │  │
+                            │  │                                                                                                │  │
+                            │  │   ┌──────────┐     │      │      │      │      │      │      │      │      │      │            │  │
+                            │  │   │          │     │      │      │      │      │      │      │      │      │      │            │  │
+                            │  │   │          │     │      │      │      │      │      │      │      │      │      │            │  │
+                            │  │   │          ├─────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┼──────┤            │  │
+                            │  │   │   City   │     │      │      │      │      │      │      │      │      │      │            │  │
+                            │  │   │          │     │      │      │      │      │      │      │      │      │      │            │  │
+                            │  │   │          │     ▼      ▼      ▼      ▼      ▼      ▼      ▼      ▼      ▼      ▼            │  │
+                            │  │   └──────────┘     1      2      3      4      5      6      7      8      9      10           │  │
+                            │  │                                                                                                │  │
+                            │  │                                                                                                │  │
+                            │  │                                                                                                │  │
+                            │  │                                                                                                │  │
+                            │  │                                                                                                │  │
+                            │  └────────────────────────────────────────────────────────────────────────────────────────────────┘  │
+                            │                                                                                                      │
+                            └──────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+                            ");
+        }
+        #endregion
+
+        #region Game Over screen
+        /// <summary>
+        /// Displays the game over screen for the player
+        /// </summary>
+        internal static void GameOver()
+        {
+            Console.Clear();
+
+            Console.WriteLine("\nCommander we lost the battle...the city has fallen (⋟﹏⋞)\n");
+            Console.WriteLine(@"
+                                      _____          __  __ ______           ______      ________ _____  
+                                     / ____|   /\   |  \/  |  ____|         / __ \ \    / /  ____|  __ \ 
+                                    | |  __   /  \  | \  / | |__           | |  | \ \  / /| |__  | |__) |
+                                    | | |_ | / /\ \ | |\/| |  __|          | |  | |\ \/ / |  __| |  _  / 
+                                    | |__| |/ ____ \| |  | | |____         | |__| | \  /  | |____| | \ \ 
+                                     \_____/_/    \_\_|  |_|______|         \____/   \/   |______|_|  \_\
+                                ");
+            
+            Thread.Sleep(2000);
+        }
+        #endregion
+
+        #region Rank display
+        /// <summary>
+        /// Displays the Rank the achieved depending on the number of enemies defeated by the player. 
         /// </summary>
         /// <param name="bossNum"></param>
-        /// <returns>Boss object value</returns>
-        internal static Boss DeployNextBoss(int bossNum)
+        internal static void PlayerRank(int bossNum)
         {
-            Boss currentBoss = new Boss("", 0, 0);
+            Console.Clear();
 
-            if(bossNum == 0)
+            switch(bossNum)
             {
-                currentBoss.Name = "The Goblin";
-                currentBoss.HP = 6;
-                currentBoss.FirePower = 2;
-            }
-            else if(bossNum == 1)
-            {
-                currentBoss.Name = "The Manticore";
-                currentBoss.HP = 10;
-                currentBoss.FirePower = 4;
-            }
-            else
-            {
-                currentBoss.Name = "The Wyvern";
-                currentBoss.HP = 20;
-                currentBoss.FirePower = 10;
-            }
-
-            return currentBoss;
-        }
-        #endregion
-
-        #region Combat logic
-        /// <summary>
-        /// The method main focus is the battle squence which takes the user input as a guess of the enemy choosen position
-        /// which is set in a semi-random way using the Random class.
-        /// </summary>
-        /// <returns>(Tuple) bool, int values</returns>
-        internal static (bool hit, int hitDistance) CombatSequence()
-        {
-            bool wasSuccessful = false; // Determines if player was successful or not
-            int shootDistance = 0; // Depending on the enemy position, determines the damage multiplier 
-
-            int playerInput = 0;
-            int shoots = 3; // Tracks the number of tries the player has to correctly guess the enemy position
-            int firstShot = 0; // Tracks and displays the player first attempt
-            int secondShot = 0; // Tracks and displays the player second attempt
-            int[] battlefield = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // Contains the posible positions the enemy could take
-
-            Random enemyPosition = new Random();
-            
-            int enemyPositionIndex = battlefield[enemyPosition.Next(0, battlefield.Length)]; // Generate a random index within the bounds of the battlefield array
-
-            while(shoots > 0)
-            {
-                Console.WriteLine($"TEST: {enemyPositionIndex}"); // Test only, remove after
-                Console.WriteLine($"\n[   Previous choices: -{firstShot} | -{secondShot} |  remaining shots: {shoots}   ]");
-                Console.WriteLine($"=======================================================");
-                Console.WriteLine("\nCommander the enemy is getting ready to attack, please choose a position from 1 to 10 ╭(°ﾛ° ”)╯");
-                Console.Write("Shoot at position: ");
-                bool isValid = int.TryParse(Console.ReadLine(), out playerInput);
-
-                if(!isValid || playerInput < 1 || playerInput > 10)
-                {
-                    Console.WriteLine("\nInvalid input. You must enter an integer between 1 and 10.");
-                    Console.WriteLine("\nPress ENTER to go back to input screen.");
-                    Console.ReadKey();
-                }
-                else if(playerInput != enemyPositionIndex)
-                {
-                    --shoots;
-                    Console.WriteLine("\nCommander it was a miss.... o(〒﹏〒)o\n");
-
-                    if(playerInput < enemyPositionIndex)
-                    {
-                        Console.WriteLine("It seems the shot was to short on distance, we must aim a little further.");
-                    }
-                    else if(playerInput > enemyPositionIndex)
-                    {
-                        Console.WriteLine("It seems the shot was to far, we must aim a little less far.");
-                    }
-
-                    Thread.Sleep(2000);
-                }
-                else // Successful hit
-                {
-                    wasSuccessful = true;
-                    Console.WriteLine("\nCommander it was a successful hit! ╭( ･ㅂ･)و\n");
-                    Thread.Sleep(2000);
+                case 0: 
+                    Console.WriteLine($"\nYou defeated: {bossNum} bosses\n");
+                    Console.WriteLine("Your Rank is: ");
+                    Console.WriteLine(@"
+                                        _      ____  ____  ____ 
+                                       / \  /|/  _ \/  _ \/  _ \
+                                       | |\ ||| / \|| / \|| | //
+                                       | | \||| \_/|| \_/|| |_\\
+                                       \_/  \|\____/\____/\____/
+                         
+                        ");
                     break;
-                }
-
-                if(shoots == 2)
-                {
-                    firstShot = playerInput;
-                }
-                else if(shoots == 1)
-                {
-                    secondShot = playerInput;
-                }
-
-                Console.Clear();
+                
+                case 1:
+                    Console.WriteLine($"\nYou defeated: {bossNum} bosses\n");
+                    Console.WriteLine("Your Rank is: ");
+                    Console.WriteLine(@"
+                                        ____  _____ _____ _____ _      ____  _____ ____ 
+                                       /  _ \/  __//    //  __// \  /|/  _ \/  __//  __\
+                                       | | \||  \  |  __\|  \  | |\ ||| | \||  \  |  \/|
+                                       | |_/||  /_ | |   |  /_ | | \||| |_/||  /_ |    /
+                                       \____/\____\\_/   \____\\_/  \|\____/\____\\_/\_\
+                                                 ");
+                    break;
+                
+                case 2:
+                    Console.WriteLine($"\nYou defeated: {bossNum} bosses\n");
+                    Console.WriteLine("Your Rank is: ");
+                    Console.WriteLine(@"
+                                        _     _____ ____  ____ 
+                                       / \ /|/  __//  __\/  _ \
+                                       | |_|||  \  |  \/|| / \|
+                                       | | |||  /_ |    /| \_/|
+                                       \_/ \|\____\\_/\_\\____/
+                                                ");
+                    break;
+                
+                case 3:
+                    Console.WriteLine($"\nYou defeated: {bossNum} bosses\n");
+                    Console.WriteLine("Your Rank is: ");
+                    Console.WriteLine(@" 
+                                         _     _  _     _  _      _____     _     _____ _____ _____ _      ____ 
+                                        / \   / \/ \ |\/ \/ \  /|/  __/    / \   /  __//  __//  __// \  /|/  _ \
+                                        | |   | || | //| || |\ ||| |  _    | |   |  \  | |  _|  \  | |\ ||| | \|
+                                        | |_/\| || \// | || | \||| |_//    | |_/\|  /_ | |_//|  /_ | | \||| |_/|
+                                        \____/\_/\__/  \_/\_/  \|\____\    \____/\____\\____\\____\\_/  \|\____/
+                                                                        ");
+                    break;
             }
 
-            return (wasSuccessful, shootDistance);
-        }
-        #endregion
-
-        #region Damage calculator
-        /// <summary>
-        /// Takes 2 int values as arguments, one for fire power and one for the current position.
-        /// Position 3 or lower adds plus 2 to its base power, position 8 or higher subtract minus 2 to base power.
-        /// </summary>
-        /// <param name="basePower"></param>
-        /// <param name="currentPosition"></param>
-        /// <returns>int value</returns>
-        internal static int DamageCalculator(int basePower, int currentPosition)
-        {
-            int distanceMultiplier = 0;
-
-            if(currentPosition <= 3)
-            {
-                return distanceMultiplier = basePower + 2;
-            }
-            else if(currentPosition >= 8)
-            {
-                return distanceMultiplier = basePower - 2;
-            }
-            else
-            {
-                return basePower;
-            }
+            Console.WriteLine("\nThank you for playing! (＾▽＾)\n");
         }
         #endregion
     }
